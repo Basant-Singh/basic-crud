@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= user.username %> </title>
+</head>
+<body>
+    <h1>All tweets by - <%= user.username %> </h1>
+    <br>
+    <% if(user.tweets[0]){ %> 
+        <% for(let i=0;i< user.tweets.length;i++){ %>
+            <li><%= user.tweets[i] %> 
+                <a href="/user/<%= user.username %>/<%= i %>/edit" style="padding-left: 2rem;">Edit</a>
+                <form action="/user/<%= user.username %>/<%= i %>?_method=DELETE" method="post" style="display: inline-block">
+                    <button type="submit">Delete tweet</button></form>
+            </li>            
+        <% } %> 
+    <% } else{ %>
+         <h3>No tweet yet</h3>
+    <% } %>  
+    <br><a href="/user/<%= user.username %>/new-tweet ">Add a tweet</a>
+    <br><a href="/users">All users</a>
+    <form action="/user/<%= user.username %>?_method=DELETE " method="post">
+    <br><button type="submit">Delete user</button>
+    </form>
+</body>
+</html>
